@@ -1,16 +1,20 @@
 # Bytebinder
 
-To start your Phoenix server:
+A sandbox for learning Elixir / Phoenix
 
+## Operations
+
+Local: 
   * Run `mix setup` to install and setup dependencies
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Dev Server:
+  * Run `flyctl deploy`
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Upcoming
+  * https://hexdocs.pm/phoenix/plug.html
 
-## Learn more
-
+## Reference (leave this intact for now)
   * Official website: https://www.phoenixframework.org/
   * Guides: https://hexdocs.pm/phoenix/overview.html
   * Docs: https://hexdocs.pm/phoenix
