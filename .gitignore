@@ -1,0 +1,10 @@
+# Elixir/Erlang
+/_build/
+/deps/
+/rel/
+
+# macOS
+/.DS_Store
+
+# IDE
+/.elixir_ls/
