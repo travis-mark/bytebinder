@@ -2,7 +2,8 @@ defmodule BytebinderWeb.UserController do
   use BytebinderWeb, :controller
 
   def index(conn, _params) do
-    render(conn, :index)
+    users = Bytebinder.Repo.all(Bytebinder.User)
+    render(conn, :index, users: users)
   end
 
   def edit(conn, %{"id" => id}) do
