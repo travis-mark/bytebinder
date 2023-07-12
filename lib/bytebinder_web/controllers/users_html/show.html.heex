@@ -1,4 +1,13 @@
 <section>
-    <h2><%= @id %></h2>
-    <b>Show does not exist yet!</b>
+    <h2><%= @user.name %></h2>
+    <dl>
+        <dt>E-mail</dt>
+        <dd><%= @user.email %></dd>
+        <%= if @user.notes do %>
+        <dt>Notes</dt>
+        <dd>
+            <%= @user.notes %>
+        </dd>
+        <% end %>
+    </dl>
 </section>

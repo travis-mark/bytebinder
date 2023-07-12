@@ -1,4 +1,18 @@
 <section>
-    <h2>Users</h2>
-    <b>Create does not exist yet!</b>
+    <h2>New User</h2>
+    <!-- TODO: Start here, research how forms work -->
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user[name]" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="user[email]" required>
+        </div>
+        <div>
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="user[notes]"></textarea>
+        </div>
+        <button type="submit">Create User</button>
+    
 </section>

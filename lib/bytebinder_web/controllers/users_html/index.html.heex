@@ -1,9 +1,17 @@
 <section>
     <h2>Users</h2>
+    <div>
+        <a href={~p"/users/new"}>New User</a>
+    </div>
     <table>
+        <tr>
+            <th>Name</th>
+            <th>Notes</th>
+        </tr>
         <%= for user <- @users do %>
         <tr>
-            <td><.link href={~p"/users/#{user.id}"}><%= user.name %></.link></td>
+            <td><a href={~p"/users/#{user.id}"}><%= user.name %></a></td>
+            <td><%= user.notes %></td>
         </tr>
         <% end %>
     </table>
