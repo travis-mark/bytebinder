@@ -1,6 +1,6 @@
 <section>
     <h2>New User</h2>
-    <!-- TODO: Start here, research how forms work -->
+    <.form for={@changeset} action={~p"/users/"}>
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="user[name]" required>
@@ -14,5 +14,5 @@
             <textarea id="notes" name="user[notes]"></textarea>
         </div>
         <button type="submit">Create User</button>
-    
+    </.form>
 </section>

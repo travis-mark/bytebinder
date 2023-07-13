@@ -4,7 +4,7 @@ defmodule BytebinderWeb.UserController do
   use BytebinderWeb, :controller
 
   def index(conn, _params) do
-    users = Bytebinder.Repo.all(Bytebinder.User)
+    users = Repo.all(User)
     render(conn, :index, users: users)
   end
 
@@ -13,12 +13,13 @@ defmodule BytebinderWeb.UserController do
   end
 
   def new(conn, _params) do
-    render(conn, :new)
+    changeset = User.changeset(%User{}, %{})
+    render(conn, :new, changeset: changeset)
   end
 
   @spec show(Plug.Conn.t(), map) :: Plug.Conn.t()
   def show(conn, %{"id" => id}) do
-    user = Bytebinder.Repo.get(Bytebinder.User, id)
+    user = Repo.get(User, id)
     render(conn, :show, user: user)
   end
 
