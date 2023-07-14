@@ -15,6 +15,22 @@ Dev Server:
 ## Upcoming
   * https://hexdocs.pm/phoenix/controllers.html
 
+## Questions
+  * The standard resource set includes:
+    * GET /resource => :index
+    * GET /resource/new => :new
+    * POST /resource => :create
+    * GET /resource/:id => :show
+    * GET /resource/:id/edit => :edit
+    * PATCH /resource/:id => :update
+    * PUT /resource/:id => :update
+    * DELETE /resource/:id => :delete
+    :new => :create and :edit => update make obvious pairs. 
+    * Where is ??? => :delete, since that would likely include the delete confirmation? 
+    * Where is the PATCH / PUT determination made? (.form appears to use PUT)
+  
+
+
 ## Reference (leave this intact for now)
   * Official website: https://www.phoenixframework.org/
   * Guides: https://hexdocs.pm/phoenix/overview.html

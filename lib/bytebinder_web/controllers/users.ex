@@ -8,8 +8,9 @@ defmodule BytebinderWeb.UserController do
     render(conn, :index, users: users)
   end
 
-  def edit(conn, %{"id" => id}) do
-    render(conn, :edit, id: id)
+  def show(conn, %{"id" => id}) do
+    user = Repo.get(User, id)
+    render(conn, :show, user: user)
   end
 
   def new(conn, _params) do
@@ -17,33 +18,52 @@ defmodule BytebinderWeb.UserController do
     render(conn, :new, changeset: changeset)
   end
 
-  @spec show(Plug.Conn.t(), map) :: Plug.Conn.t()
-  def show(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}) do
     user = Repo.get(User, id)
-    render(conn, :show, user: user)
+    changeset = User.changeset(user, %{})
+    render(conn, :edit, changeset: changeset)
   end
 
-  @spec create(Plug.Conn.t(), any) :: Plug.Conn.t()
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: ~p"/users/")
 
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, :new, changeset: changeset)
     end
   end
 
-  def update(conn, %{"id" => id}) do
-    render(conn, :show, update: id)
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Repo.get(User, id)
+    changeset = User.changeset(user, user_params)
+    case Repo.update(changeset) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "User updated successfully.")
+        |> redirect(to: ~p"/users/")
+
+      {:error, changeset} ->
+        render(conn, :edit, changeset: changeset)
+    end
   end
 
   def delete(conn, %{"id" => id}) do
-    render(conn, :show, delete: id)
+    user = Repo.get(User, id)
+    changeset = User.changeset(user, %{})
+    case Repo.delete(changeset) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "User deleted successfully.")
+        |> redirect(to: ~p"/users/")
+
+      {:error, changeset} ->
+        render(conn, :edit, changeset: changeset)
+    end
   end
 end
 

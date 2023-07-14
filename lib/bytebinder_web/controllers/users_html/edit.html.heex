@@ -1,4 +1,20 @@
 <section>
     <h2>Users</h2>
-    <b>TODO: Edit does not exist yet!</b>
+    <.form for={@changeset} action={~p"/users/#{@changeset.data.id}"}>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user[name]" value={@changeset.data.name} required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="user[email]" value={@changeset.data.email} required>
+        </div>
+        <div>
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="user[notes]">
+                <%= @changeset.data.notes %>
+            </textarea>
+        </div>
+        <button type="submit">Save User</button>
+    </.form>
 </section>
