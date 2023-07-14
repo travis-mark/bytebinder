@@ -10,5 +10,8 @@
         </dd>
         <% end %>
     </dl>
-    <a href={~p"/users/#{@user.id}/edit"}>Edit</a>
+    <a href={~p"/users/#{@user.id}/edit"}>Edit</a> 
+    <.form for={} action={~p"/users/#{@user.id}"} method="DELETE">
+        <button type="submit">Delete</button>
+    </.form>
 </section>
