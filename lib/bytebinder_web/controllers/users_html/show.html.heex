@@ -1,5 +1,16 @@
 <section>
-    <h2><%= @user.name %></h2>
+    <.header>
+        <%= @user.name %>
+        <:actions>
+            <div class="flex flex-row space-x-4">
+                <.button href={~p"/users/#{@user.id}/edit"}>Edit</.button>
+                <.form for={} action={~p"/users/#{@user.id}"} method="DELETE">
+                    <.button type="submit">Delete</.button>
+                </.form>
+            </div>
+        </:actions>
+    </.header>
+    <!-- TODO: Get a field list implementation -->
     <dl>
         <dt>E-mail</dt>
         <dd><%= @user.email %></dd>
@@ -10,8 +21,4 @@
         </dd>
         <% end %>
     </dl>
-    <a href={~p"/users/#{@user.id}/edit"}>Edit</a> 
-    <.form for={} action={~p"/users/#{@user.id}"} method="DELETE">
-        <button type="submit">Delete</button>
-    </.form>
 </section>

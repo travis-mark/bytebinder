@@ -1,20 +1,15 @@
 <section>
-    <h2>Users</h2>
     <.form for={@changeset} action={~p"/users/#{@changeset.data.id}"}>
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="user[name]" value={@changeset.data.name} required>
+        <.header>
+            Edit User
+            <:actions>
+                <.button type="submit">Save</.button>
+            </:actions>
+        </.header>
+        <div class='space-y-4'>
+            <.input type="text" id="name" name="user[name]" label="Name:" value={@changeset.data.name} required></.input>
+            <.input type="email" id="email" name="user[email]" label="Email:" value={@changeset.data.email} required></.input>
+            <.input id="notes" type="textarea" name="user[notes]" label="Notes:" value={@changeset.data.notes}></.input>
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="user[email]" value={@changeset.data.email} required>
-        </div>
-        <div>
-            <label for="notes">Notes:</label>
-            <textarea id="notes" name="user[notes]">
-                <%= @changeset.data.notes %>
-            </textarea>
-        </div>
-        <button type="submit">Save User</button>
     </.form>
 </section>

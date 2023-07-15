@@ -1,18 +1,21 @@
 <section>
-    <h2>Users</h2>
-    <div>
-        <a href={~p"/users/new"}>New User</a>
-    </div>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Notes</th>
-        </tr>
-        <%= for user <- @users do %>
-        <tr>
-            <td><a href={~p"/users/#{user.id}"}><%= user.name %></a></td>
-            <td><%= user.notes %></td>
-        </tr>
-        <% end %>
-    </table>
+    <.header>
+        Users
+        <:actions>
+            <.button href={~p"/users/new"}>New User</.button>
+        </:actions>
+    </.header>
+    <.table id="users" rows={@users}>
+        <:col :let={user} label="Name">
+            <a href={~p"/users/#{user.id}"}>
+                <%= user.name %>
+            </a>
+        </:col>
+        <:col :let={user} label="E-mail">
+            <%= user.email %>
+        </:col>
+        <:col :let={user} label="Notes">
+            <%= user.notes %>
+        </:col>
+    </.table>
 </section>
