@@ -17,5 +17,12 @@
         <:col :let={user} label="Notes">
             <%= user.notes %>
         </:col>
+        <!-- TODO: formatting -->
+        <:col :let={user} label="Notes">
+            <%= user.inserted_at %>
+        </:col>
+        <:col :let={user} label="Notes">
+            <%= user.updated_at %>
+        </:col>
     </.table>
 </section>
