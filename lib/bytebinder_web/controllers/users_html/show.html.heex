@@ -14,6 +14,12 @@
     <dl>
         <dt>E-mail</dt>
         <dd><%= @user.email %></dd>
+        <%= if @user.pronouns do %>
+            <dt>Pronouns</dt>
+            <dd>
+                <%= @user.pronouns %>
+            </dd>
+            <% end %>
         <%= if @user.notes do %>
         <dt>Notes</dt>
         <dd>
