@@ -14,14 +14,11 @@
         <:col :let={user} label="E-mail">
             <%= user.email %>
         </:col>
-        <:col :let={user} label="Notes">
-            <%= user.notes %>
-        </:col>
         <!-- TODO: formatting -->
-        <:col :let={user} label="Notes">
+        <:col :let={user} label="Created">
             <%= user.inserted_at %>
         </:col>
-        <:col :let={user} label="Notes">
+        <:col :let={user} label="Updated">
             <%= user.updated_at %>
         </:col>
     </.table>
