@@ -7,4 +7,10 @@ defmodule Bytebinder.League do
 
     timestamps()
   end
+
+  def changeset(league, attrs) do
+    league
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
+  end
 end

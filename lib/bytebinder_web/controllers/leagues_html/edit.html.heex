@@ -1,0 +1,13 @@
+<section>
+    <.form for={@changeset} action={~p"/leagues/#{@changeset.data.id}"}>
+        <.header>
+            Edit League
+            <:actions>
+                <.button type="submit">Save</.button>
+            </:actions>
+        </.header>
+        <div class='space-y-4'>
+            <.input type="text" name="league[name]" label="Name:" value={@changeset.data.name} required></.input>
+        </div>
+    </.form>
+</section>

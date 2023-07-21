@@ -1,3 +1,22 @@
 <section>
-    <h1>Hello</h1>
+    <.header>
+        Leagues
+        <:actions>
+            <.button href={~p"/leagues/new"}>New League</.button>
+        </:actions>
+    </.header>
+    <.table id="leagues" rows={@leagues}>
+        <:col :let={league} label="Name">
+            <a href={~p"/leagues/#{league.id}"}>
+                <%= league.name %>
+            </a>
+        </:col>
+        <!-- TODO: formatting -->
+        <:col :let={league} label="Created">
+            <%= league.inserted_at %>
+        </:col>
+        <:col :let={league} label="Updated">
+            <%= league.updated_at %>
+        </:col>
+    </.table>
 </section>

@@ -1,0 +1,13 @@
+<section>
+    <.header>
+        <%= @league.name %>
+        <:actions>
+            <div class="flex flex-row space-x-4">
+                <.button href={~p"/leagues/#{@league.id}/edit"}>Edit</.button>
+                <.form for={} action={~p"/leagues/#{@league.id}"} method="DELETE">
+                    <.button type="submit">Delete</.button>
+                </.form>
+            </div>
+        </:actions>
+    </.header>
+</section>
