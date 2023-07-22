@@ -28,7 +28,7 @@ defmodule BytebinderWeb.LeagueController do
     changeset = League.changeset(%League{}, league_params)
 
     case Repo.insert(changeset) do
-      {:ok, _user} ->
+      {:ok, _league} ->
         conn
         |> put_flash(:info, "League created successfully.")
         |> redirect(to: ~p"/leagues/")
@@ -42,7 +42,7 @@ defmodule BytebinderWeb.LeagueController do
     league = Repo.get(League, id)
     changeset = League.changeset(league, league_params)
     case Repo.update(changeset) do
-      {:ok, _user} ->
+      {:ok, _league} ->
         conn
         |> put_flash(:info, "League updated successfully.")
         |> redirect(to: ~p"/leagues/")
@@ -56,7 +56,7 @@ defmodule BytebinderWeb.LeagueController do
     league = Repo.get(League, id)
     changeset = League.changeset(league, %{})
     case Repo.delete(changeset) do
-      {:ok, _user} ->
+      {:ok, _league} ->
         conn
         |> put_flash(:info, "League deleted successfully.")
         |> redirect(to: ~p"/leagues/")
