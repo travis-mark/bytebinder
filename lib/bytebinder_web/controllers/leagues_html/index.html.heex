@@ -11,12 +11,11 @@
                 <%= league.name %>
             </a>
         </:col>
-        <!-- TODO: formatting -->
         <:col :let={league} label="Created">
-            <%= league.inserted_at %>
+            <%= Bytebinder.format_date(league.inserted_at) %>
         </:col>
         <:col :let={league} label="Updated">
-            <%= league.updated_at %>
+            <%= Bytebinder.format_date(league.updated_at) %>
         </:col>
     </.table>
 </section>

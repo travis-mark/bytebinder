@@ -14,12 +14,11 @@
         <:col :let={user} label="E-mail">
             <%= user.email %>
         </:col>
-        <!-- TODO: formatting -->
         <:col :let={user} label="Created">
-            <%= user.inserted_at %>
+            <%= Bytebinder.format_date(user.inserted_at) %>
         </:col>
         <:col :let={user} label="Updated">
-            <%= user.updated_at %>
+            <%= Bytebinder.format_date(user.updated_at) %>
         </:col>
     </.table>
 </section>
