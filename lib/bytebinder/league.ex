@@ -6,6 +6,8 @@ defmodule Bytebinder.League do
     field :name, :string
 
     timestamps()
+
+    many_to_many :users, Bytebinder.User, join_through: Bytebinder.UserLeague
   end
 
   def changeset(league, attrs) do

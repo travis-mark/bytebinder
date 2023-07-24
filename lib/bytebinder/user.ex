@@ -9,6 +9,8 @@ defmodule Bytebinder.User do
     field :pronouns, :string
 
     timestamps()
+    
+    many_to_many :leagues, Bytebinder.League, join_through: Bytebinder.UserLeague
   end
 
   @doc false
