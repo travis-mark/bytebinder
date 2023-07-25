@@ -8,6 +8,13 @@
         </.header>
         <div class='space-y-4'>
             <.input type="text" name="league[name]" label="Name:" value={@changeset.data.name} required></.input>
+            <select name="league[user_ids][]" multiple>
+                <%= for user <- @users do %>
+                    <option value={user.id}>
+                        <%= user.name %>
+                    </option>
+                <% end %>
+            </select>
         </div>
     </.form>
 </section>

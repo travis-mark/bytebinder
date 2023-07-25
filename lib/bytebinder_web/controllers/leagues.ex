@@ -1,4 +1,4 @@
-alias Bytebinder.{Repo,League}
+alias Bytebinder.{Repo,League,User}
 
 defmodule BytebinderWeb.LeagueController do
   use BytebinderWeb, :controller
@@ -20,8 +20,9 @@ defmodule BytebinderWeb.LeagueController do
 
   def edit(conn, %{"id" => id}) do
     league = Repo.get(League, id)
+    users = Repo.all(User)
     changeset = League.changeset(league, %{})
-    render(conn, :edit, changeset: changeset)
+    render(conn, :edit, changeset: changeset, users: users)
   end
 
   def create(conn, %{"league" => league_params}) do
