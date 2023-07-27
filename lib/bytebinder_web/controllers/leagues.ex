@@ -19,10 +19,11 @@ defmodule BytebinderWeb.LeagueController do
   end
 
   def edit(conn, %{"id" => id}) do
-    league = Repo.get(League, id)
+    league = Repo.get(League, id) |> Repo.preload(:users)
     users = Repo.all(User)
+    selected_user_ids = league.users |> Enum.map(&Map.get(&1, :id))
     changeset = League.changeset(league, %{})
-    render(conn, :edit, changeset: changeset, users: users)
+    render(conn, :edit, changeset: changeset, users: users, selected_user_ids: selected_user_ids)
   end
 
   def create(conn, %{"league" => league_params}) do
@@ -40,7 +41,7 @@ defmodule BytebinderWeb.LeagueController do
   end
 
   def update(conn, %{"id" => id, "league" => league_params}) do
-    league = Repo.get(League, id)
+    league = Repo.get(League, id) |> Repo.preload(:users)
     changeset = League.changeset(league, league_params)
     case Repo.update(changeset) do
       {:ok, _league} ->
