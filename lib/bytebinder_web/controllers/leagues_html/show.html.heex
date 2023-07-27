@@ -10,4 +10,9 @@
             </div>
         </:actions>
     </.header>
+    <%= for user <- @league.users do %>
+        <div>
+            <%= user.name %>
+        </div>
+    <% end %>
 </section>

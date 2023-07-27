@@ -36,6 +36,9 @@ The standard resource set includes:
 1. Where is ??? => :delete, since that would likely include the delete confirmation? 
 2. Where is the PATCH / PUT determination made? (.form appears to use PUT)
 
+`many-to-many` doesn't appear to have a straight-forward update / insert mechanism.
+3. What is the right approach for connecting tables?
+
 ## Reference (leave this intact for now)
   * Official website: https://www.phoenixframework.org/
   * Guides: https://hexdocs.pm/phoenix/overview.html

@@ -9,7 +9,7 @@ defmodule BytebinderWeb.LeagueController do
   end
 
   def show(conn, %{"id" => id}) do
-    league = Repo.get(League, id)
+    league = Repo.get(League, id) |> Repo.preload(:users)
     render(conn, :show, league: league)
   end
 
