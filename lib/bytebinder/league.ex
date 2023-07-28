@@ -16,17 +16,12 @@ defmodule Bytebinder.League do
   end
 
   def changeset(league, attrs) do
-    if attrs["user_ids"] do
-      users = from(u in User, where: u.id in ^attrs["user_ids"])
-        |> Repo.all()
-      league
-        |> cast(attrs, [:name])
-        |> put_assoc(:users, users)
-        |> validate_required([:name])
-    else
-      league
-        |> cast(attrs, [:name])
-        |> validate_required([:name])
-    end
+    user_ids = attrs["user_ids"] || []
+    users = from(u in User, where: u.id in ^user_ids)
+      |> Repo.all()
+    league
+      |> cast(attrs, [:name])
+      |> put_assoc(:users, users)
+      |> validate_required([:name])
   end
 end
