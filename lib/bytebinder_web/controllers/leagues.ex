@@ -55,7 +55,7 @@ defmodule BytebinderWeb.LeagueController do
   end
 
   def delete(conn, %{"id" => id}) do
-    league = Repo.get(League, id)
+    league = Repo.get(League, id) |> Repo.preload(:users)
     changeset = League.changeset(league, %{})
     case Repo.delete(changeset) do
       {:ok, _league} ->

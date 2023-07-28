@@ -12,7 +12,8 @@ defmodule Bytebinder.League do
 
     many_to_many :users, Bytebinder.User,
       join_through: Bytebinder.UserLeague,
-      on_replace: :delete
+      on_replace: :delete,
+      on_delete: :delete_all
   end
 
   def changeset(league, attrs) do
