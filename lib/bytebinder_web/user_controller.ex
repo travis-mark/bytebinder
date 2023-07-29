@@ -66,9 +66,3 @@ defmodule BytebinderWeb.UserController do
     end
   end
 end
-
-defmodule BytebinderWeb.UserHTML do
-  use BytebinderWeb, :html
-
-  embed_templates "users_html/*"
-end
