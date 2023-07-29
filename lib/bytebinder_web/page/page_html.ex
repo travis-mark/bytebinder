@@ -1,7 +1,7 @@
 defmodule BytebinderWeb.PageHTML do
   use BytebinderWeb, :html
 
-  embed_templates "page_html/*"
+  embed_templates "*"
 
   attr :href, :string, default: nil
   slot :inner_block, required: true
