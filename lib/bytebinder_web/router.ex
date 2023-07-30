@@ -20,6 +20,7 @@ defmodule BytebinderWeb.Router do
     get "/", PageController, :home
     resources "/users", UserController
     resources "/leagues", LeagueController
+    resources "/scores", ScoreController
   end
 
   # Other scopes may use custom stacks.
