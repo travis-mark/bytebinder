@@ -1,5 +1,6 @@
 defmodule Bytebinder.Score do
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "scores" do
     belongs_to :user, Bytebinder.User
@@ -8,5 +9,11 @@ defmodule Bytebinder.Score do
     field :input, :string
 
     timestamps()
+  end
+
+  @doc false
+  def changeset(score, attrs) do
+    score
+    |> cast(attrs, [:input])
   end
 end

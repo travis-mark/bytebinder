@@ -1,0 +1,26 @@
+<section>
+    <.header>
+        Scores
+        <:actions>
+            <.button href={~p"/scores/new"}>Add Score</.button>
+        </:actions>
+    </.header>
+    <.table id="scores" rows={@scores}>
+        <:col :let={score} label="Name">
+            <a href={~p"/scores/#{score.id}"}>
+                <%= score.score %>
+            </a>
+        </:col>
+        <:col :let={score} label="Win">
+            <a href={~p"/scores/#{score.id}"}>
+                <%= if score.win, do: "Y", else: "N"   %>
+            </a>
+        </:col>
+        <:col :let={score} label="Created">
+            <%= Bytebinder.format_date(score.inserted_at) %>
+        </:col>
+        <:col :let={score} label="Updated">
+            <%= Bytebinder.format_date(score.updated_at) %>
+        </:col>
+    </.table>
+</section>

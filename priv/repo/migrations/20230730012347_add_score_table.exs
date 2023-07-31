@@ -7,6 +7,8 @@ defmodule Bytebinder.Repo.Migrations.AddScoreTable do
       add :score, :integer
       add :win, :boolean
       add :input, :string
+
+      timestamps()
     end
   end
 end

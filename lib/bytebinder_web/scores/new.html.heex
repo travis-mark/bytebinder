@@ -1,0 +1,14 @@
+<section>
+    <.form for={@changeset} action={~p"/scores/"}>
+        <.header>
+            Add Score: <%= @user.name %>
+            <:actions>
+                <.button type="submit">Save</.button>
+            </:actions>
+        </.header>
+        <p>Paste your score here:</p>
+        <div class='space-y-4'>
+            <.input id="input" type="textarea" name="score[input]" value={@changeset.data.input}></.input>
+        </div>
+    </.form>
+</section>
