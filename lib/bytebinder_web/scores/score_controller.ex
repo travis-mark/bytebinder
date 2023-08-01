@@ -36,9 +36,29 @@ defmodule BytebinderWeb.ScoreController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    score = Repo.get(Score, id)
+    changeset = Score.changeset(score, %{})
+    render(conn, :show, changeset: changeset)
+  end
+
   def edit(conn, %{"id" => id}) do
     score = Repo.get(Score, id)
     changeset = Score.changeset(score, %{})
     render(conn, :edit, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "score" => score_params}) do
+    score = Repo.get(Score, id)
+    changeset = Score.changeset(score, score_params)
+    case Repo.update(changeset) do
+      {:ok, _score} ->
+        conn
+        |> put_flash(:info, "Score updated.")
+        |> redirect(to: ~p"/scores/")
+
+      {:error, changeset} ->
+        render(conn, :edit, changeset: changeset)
+    end
   end
 end

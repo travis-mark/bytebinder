@@ -8,7 +8,7 @@
     <.table id="scores" rows={@scores}>
         <:col :let={score} label="Name">
             <a href={~p"/scores/#{score.id}"}>
-                <%= score.score %>
+                <%= score.score || "--" %>
             </a>
         </:col>
         <:col :let={score} label="Win">

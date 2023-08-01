@@ -14,6 +14,6 @@ defmodule Bytebinder.Score do
   @doc false
   def changeset(score, attrs) do
     score
-    |> cast(attrs, [:input])
+    |> cast(attrs, [:input, :score, :win])
   end
 end

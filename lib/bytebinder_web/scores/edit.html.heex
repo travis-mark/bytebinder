@@ -1,1 +1,18 @@
-<h1>Start here tomorrow</h1>
+<section>
+    <.form for={@changeset} action={~p"/scores/#{@changeset.data.id}"}>
+        <.header>
+            Edit Score
+            <:actions>
+                <.button type="submit">Save</.button>
+            </:actions>
+        </.header>
+        <div class='space-y-4'>
+            <.input type="number" id="score" name="score[score]" label="Score:" value={@changeset.data.score}>
+            </.input>
+            <.input type="checkbox" id="win" name="score[win]" label="Win:" value={@changeset.data.win}>
+            </.input>
+            <.input type="textarea" id="input" name="score[input]" label="Input:" value={@changeset.data.input}>
+            </.input>
+        </div>
+    </.form>
+</section>

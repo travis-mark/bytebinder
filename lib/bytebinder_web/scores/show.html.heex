@@ -1,0 +1,16 @@
+<section>
+    <.form for={@changeset} action={~p"/scores/#{@changeset.data.id}"}>
+        <.header>
+            Score
+            <:actions>
+                <.button href={~p"/scores/#{@changeset.data.id}/edit"}>Edit</.button>
+            </:actions>
+        </.header>
+        <div class='space-y-4'>
+            // TODO: View-only mode
+            <.input type="number" id="score" name="score[score]" label="Score:" value={@changeset.data.score}></.input>
+            <.input type="boolean" id="win" name="score[win]" label="Win:" value={@changeset.data.win}></.input>
+            <.input type="textarea" id="input" name="score[input]" label="Input:" value={@changeset.data.input}></.input>
+        </div>
+    </.form>
+</section>
