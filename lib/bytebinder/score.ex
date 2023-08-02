@@ -17,6 +17,9 @@ defmodule Bytebinder.Score do
     |> cast(attrs, [:input, :score, :win])
   end
 
+  @doc """
+  Attempt to classify score based on pasted input from game.
+  """
   def classify(input) do
     [
       ~r/Wordle (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/,
