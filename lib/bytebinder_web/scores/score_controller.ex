@@ -15,19 +15,17 @@ defmodule BytebinderWeb.ScoreController do
   end
 
   def create(conn, %{"score" => score_params}) do
-    # TODO: Attempt to extract game, game_no and score from input
-    classify = false
-    changeset = Score.changeset(%Score{}, score_params)
-
+    data = Map.merge(score_params, Score.classify(score_params["input"]) || %{})
+    changeset = Score.changeset(%Score{},  data)
     case Repo.insert(changeset) do
       {:ok, score} ->
-        if classify do
+        if data["score"] do
           conn
           |> put_flash(:info, "Score added.")
           |> redirect(to: ~p"/scores/")
         else
           conn
-          |> put_flash(:error, "Score created, please add additional details.")
+          |> put_flash(:info, "Score started, please add additional details.")
           |> redirect(to: ~p"/scores/#{score.id}/edit")
         end
 

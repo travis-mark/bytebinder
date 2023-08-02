@@ -16,4 +16,13 @@ defmodule Bytebinder.Score do
     score
     |> cast(attrs, [:input, :score, :win])
   end
+
+  def classify(input) do
+    [
+      ~r/Wordle (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/,
+      ~r/(?s)Daily Octordle #(?<game_no>\d+).*Score[:] (?<score>\d+)/,
+      ~r/(?s)Connections.*Puzzle #(?<game_no>\d+)/ # D'oh no score
+    ]
+    |> Enum.find_value(nil, fn regex -> Regex.named_captures(regex, input) end)
+  end
 end
