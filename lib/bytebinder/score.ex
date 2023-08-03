@@ -4,6 +4,8 @@ defmodule Bytebinder.Score do
 
   schema "scores" do
     belongs_to :user, Bytebinder.User
+    field :game, :string
+    field :game_no, :string
     field :score, :integer
     field :win, :boolean
     field :input, :string
@@ -14,7 +16,7 @@ defmodule Bytebinder.Score do
   @doc false
   def changeset(score, attrs) do
     score
-    |> cast(attrs, [:input, :score, :win])
+    |> cast(attrs, [:input, :score, :win, :game, :game_no])
   end
 
   @doc """
@@ -22,9 +24,9 @@ defmodule Bytebinder.Score do
   """
   def classify(input) do
     [
-      ~r/Wordle (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/,
-      ~r/(?s)Daily Octordle #(?<game_no>\d+).*Score[:] (?<score>\d+)/,
-      ~r/(?s)Connections.*Puzzle #(?<game_no>\d+)/ # D'oh no score
+      ~r/(?s)(?<game>Wordle) (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/,
+      ~r/(?s)(?<game>Daily Octordle) #(?<game_no>\d+).*Score[:] (?<score>\d+)/,
+      ~r/(?s)(?<game>Connections).*Puzzle #(?<game_no>\d+)/ # D'oh no score
     ]
     |> Enum.find_value(nil, fn regex -> Regex.named_captures(regex, input) end)
   end
