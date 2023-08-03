@@ -7,10 +7,11 @@
             </:actions>
         </.header>
         <div class='space-y-4'>
-            // TODO: View-only mode
-            <.input type="number" id="score" name="score[score]" label="Score:" value={@changeset.data.score}></.input>
-            <.input type="boolean" id="win" name="score[win]" label="Win:" value={@changeset.data.win}></.input>
-            <.input type="textarea" id="input" name="score[input]" label="Input:" value={@changeset.data.input}></.input>
+            <.input type="viewonly" id="score" name="score[game]" label="Game:" value={@changeset.data.game}></.input>
+            <.input type="viewonly" id="score" name="score[game_no]" label="Game No:" value={@changeset.data.game_no}></.input>
+            <.input type="viewonly" id="score" name="score[score]" label="Score:" value={@changeset.data.score}></.input>
+            <.input type="viewonly" id="win" name="score[win]" label="Win:" value={@changeset.data.win}></.input>
+            <.input type="viewonly" id="input" name="score[input]" label="Input:" value={@changeset.data.input}></.input>
         </div>
     </.form>
 </section>
