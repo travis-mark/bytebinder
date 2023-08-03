@@ -6,6 +6,12 @@
         </:actions>
     </.header>
     <.table id="scores" rows={@scores}>
+        <:col :let={score} label="Game">
+            <%= score.game || "--" %>
+        </:col>
+        <:col :let={score} label="No">
+            <%= score.game_no || "--" %>
+        </:col>
         <:col :let={score} label="Name">
             <a href={~p"/scores/#{score.id}"}>
                 <%= score.score || "--" %>

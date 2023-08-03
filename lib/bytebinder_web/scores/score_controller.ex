@@ -2,9 +2,10 @@ alias Bytebinder.{Repo,Score,User}
 
 defmodule BytebinderWeb.ScoreController do
   use BytebinderWeb, :controller
+  import Ecto.Query
 
   def index(conn, _params) do
-    scores = Repo.all(Score)
+    scores = from(s in Score, order_by: s.game_no) |> Repo.all()
     render(conn, :index, scores: scores)
   end
 
