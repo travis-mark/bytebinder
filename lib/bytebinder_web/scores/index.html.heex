@@ -6,9 +6,11 @@
         </:actions>
     </.header>
     <.table id="scores" rows={@scores}>
+        <!-- TODO: Game filter -->
         <:col :let={score} label="Game">
             <%= score.game || "--" %>
         </:col>
+        <!-- TODO: Link to other players listing -->
         <:col :let={score} label="No">
             <%= score.game_no || "--" %>
         </:col>

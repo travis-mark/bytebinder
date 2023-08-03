@@ -2,6 +2,7 @@ defmodule Bytebinder.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  # TODO: Friends
   schema "users" do
     field :email, :string
     field :name, :string
@@ -9,7 +10,7 @@ defmodule Bytebinder.User do
     field :pronouns, :string
 
     timestamps()
-    
+
     many_to_many :leagues, Bytebinder.League, join_through: Bytebinder.UserLeague
   end
 
