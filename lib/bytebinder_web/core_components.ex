@@ -286,7 +286,7 @@ defmodule BytebinderWeb.CoreComponents do
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+    values: ~w(checkbox color date datetime-local display email file hidden month number password
                range radio search select tel text textarea time url week)
 
   attr :field, Phoenix.HTML.FormField,
@@ -300,7 +300,7 @@ defmodule BytebinderWeb.CoreComponents do
 
   attr :rest, :global,
     include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
-                multiple pattern placeholder readonly required rows size step viewonly)
+                multiple pattern placeholder readonly required rows size step)
 
   slot :inner_block
 
@@ -376,7 +376,7 @@ defmodule BytebinderWeb.CoreComponents do
     """
   end
 
-  def input(%{type: "viewonly"} = assigns) do
+  def input(%{type: "display"} = assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
