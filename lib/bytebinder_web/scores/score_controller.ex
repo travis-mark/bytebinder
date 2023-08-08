@@ -4,6 +4,11 @@ defmodule BytebinderWeb.ScoreController do
   use BytebinderWeb, :controller
   import Ecto.Query
 
+  def index(conn, %{"game" => game}) do
+    scores = from(s in Score, where: s.game == ^game, order_by: s.game_no) |> Repo.all()
+    render(conn, :index, scores: scores)
+  end
+
   def index(conn, _params) do
     scores = from(s in Score, order_by: s.game_no) |> Repo.all()
     render(conn, :index, scores: scores)

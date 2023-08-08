@@ -699,4 +699,29 @@ defmodule BytebinderWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  @doc """
+  Show a link or bold based on condition.
+  """
+  attr :active, :boolean
+  attr :href, :string
+  attr :rest, :global,
+    include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
+                multiple pattern placeholder readonly required rows size step)
+  slot :inner_block, required: true
+  def ab(assigns) do
+    if (!assigns.active) do
+      ~H"""
+      <a href={@href} {@rest}>
+        <%= render_slot(@inner_block) %>
+      </a>
+      """
+    else
+      ~H"""
+      <b {@rest}>
+        <%= render_slot(@inner_block) %>
+      </b>
+      """
+    end
+  end
 end
