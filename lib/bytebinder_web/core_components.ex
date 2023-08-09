@@ -504,8 +504,8 @@ defmodule BytebinderWeb.CoreComponents do
 
     ~H"""
     <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
-      <table class="w-[40rem] mt-11 sm:w-full">
-        <thead class="text-sm text-left leading-6 text-zinc-500">
+      <table class="w-[40rem] mt-4 sm:w-full">
+        <thead class="text-sm text-left gap-6 text-zinc-500">
           <tr>
             <th :for={col <- @col} class="p-0 pr-6 pb-4 font-normal"><%= col[:label] %></th>
             <th class="relative p-0 pb-4"><span class="sr-only"><%= gettext("Actions") %></span></th>
@@ -514,7 +514,7 @@ defmodule BytebinderWeb.CoreComponents do
         <tbody
           id={@id}
           phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
-          class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm leading-6 text-zinc-700"
+          class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm gap-6 text-zinc-700"
         >
           <tr :for={row <- @rows} id={@row_id && @row_id.(row)} class="group hover:bg-zinc-50">
             <td
@@ -522,7 +522,7 @@ defmodule BytebinderWeb.CoreComponents do
               phx-click={@row_click && @row_click.(row)}
               class={["relative p-0", @row_click && "hover:cursor-pointer"]}
             >
-              <div class="block py-4 pr-6">
+              <div class="block min-h-[50px] flex items-center">
                 <span class="absolute -inset-y-px right-0 -left-4 group-hover:bg-zinc-50 sm:rounded-l-xl" />
                 <span class={["relative", i == 0 && "font-semibold text-zinc-900"]}>
                   <%= render_slot(col, @row_item.(row)) %>

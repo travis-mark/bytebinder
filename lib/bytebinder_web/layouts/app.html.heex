@@ -1,31 +1,17 @@
-<header class="px-4 sm:px-6 lg:px-8">
-  <!-- TODO: Actual top bar -->
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-    <div class="flex items-center gap-4">
-      <a href="/">
-        <img src={~p"/images/logo.svg"} width="36" />
-      </a>
-      <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
-        v<%= Application.spec(:phoenix, :vsn) %>
-      </p>
-    </div>
-    <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href={~p"/users/"} class="hover:text-zinc-700">
-        Users
-      </a>
-      <a href="https://github.com/travis-mark/bytebinder" class="hover:text-zinc-700" target="_new">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
+<header class="border-b border-zinc-200">
+  <div class="flex font-semibold gap-2 items-center justify-center mx-auto max-w-2xl p-2 text-sm text-zinc-900">
+    <a href={~p"/users/"} class="hover:bg-zinc-300 hover:rounded-lg p-2">
+      Users
+    </a>
+    <a href={~p"/leagues/"} class="hover:bg-zinc-300 hover:rounded-lg p-2">
+      Leagues 
+    </a>
+    <a href={~p"/scores/"} class="hover:bg-zinc-300 hover:rounded-lg p-2">
+      Scores
+    </a>
   </div>
 </header>
-<main class="px-4 py-20 sm:px-6 lg:px-8">
+<main class="px-4 py-4">
   <div class="mx-auto max-w-2xl">
     <.flash_group flash={@flash} />
     <%= @inner_content %>
