@@ -13,12 +13,9 @@ Dev Server:
 * Run `flyctl deploy`
 
 ## Upcoming
-* https://hexdocs.pm/phoenix/ecto.html - Add gravestone to User schema
 * https://hexdocs.pm/phoenix/mix_phx_gen_auth.html - Setup login
 * Replace home page
-* Replace top bar
-* Create collection model
-* https://hexdocs.pm/phoenix/file_uploads.html - Add attachments
+* Games model / admin panel
 
 ## Questions
 
