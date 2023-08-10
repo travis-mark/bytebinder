@@ -23,12 +23,8 @@ defmodule Bytebinder.Score do
   Attempt to classify score based on pasted input from game.
   """
   def classify(input) do
-    [
-      ~r/(?s)(?<game>Wordle) (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/,
-      ~r/(?s)(?<game>Daily Octordle) #(?<game_no>\d+).*Score[:] (?<score>\d+)/,
-      ~r/(?s)(?<game>Connections).*Puzzle #(?<game_no>\d+)/ # D'oh no score
-    ]
-    |> Enum.find_value(nil, fn regex -> Regex.named_captures(regex, input) end)
+    [&parse_wordle/1, &parse_octordle/1, &parse_connections/1]
+    |> Enum.find_value(nil, fn f -> f.(input) end)
   end
 
   @doc """
@@ -36,5 +32,35 @@ defmodule Bytebinder.Score do
   """
   def format(score) do
     "#{score.game} ##{score.game_no}"
+  end
+
+  @doc """
+  Parse Wordle score
+  """
+  def parse_wordle(input) do
+    data = Regex.named_captures(~r/(?s)(?<game>Wordle) (?<game_no>\d+) (?<score>\w)\/6(?<hardmode>[*]?)/, input)
+    case data["score"] do
+      nil -> nil
+      s when s in ["1", "2", "3", "4", "5", "6"] -> data |> Map.put("win", true)
+      "X" -> data |> Map.put("win", false) |> Map.put("score", "7")
+    end
+  end
+
+  @doc """
+  Parse Octordle score
+  """
+  def parse_octordle(input) do
+    data = Regex.named_captures(~r/(?s)(?<game>Daily Octordle) #(?<game_no>\d+).*Score[:] (?<score>\d+)/, input)
+    if data do
+      data |> Map.put("win", !String.contains?(input, "🟥"))
+    end
+  end
+
+  @doc """
+  Parse Connections score
+  """
+  def parse_connections(input) do
+    # TODO: Score and win logic
+    Regex.named_captures(~r/(?s)(?<game>Connections).*Puzzle #(?<game_no>\d+)/, input)
   end
 end
