@@ -5,12 +5,12 @@ defmodule BytebinderWeb.ScoreController do
   import Ecto.Query
 
   def index(conn, %{"game" => game}) do
-    scores = from(s in Score, where: s.game == ^game, order_by: s.game_no) |> Repo.all()
+    scores = from(s in Score, where: s.game == ^game, order_by: [desc: s.game_no]) |> Repo.all()
     render(conn, :index, scores: scores)
   end
 
   def index(conn, _params) do
-    scores = from(s in Score, order_by: s.game_no) |> Repo.all()
+    scores = from(s in Score, order_by: [desc: s.inserted_at]) |> Repo.all()
     render(conn, :index, scores: scores)
   end
 
@@ -27,11 +27,11 @@ defmodule BytebinderWeb.ScoreController do
       {:ok, score} ->
         if data["score"] do
           conn
-          |> put_flash(:info, "Score added.")
+          |> put_flash(:info, "#{Score.format(score)} added.")
           |> redirect(to: ~p"/scores/")
         else
           conn
-          |> put_flash(:info, "Score started, please add additional details.")
+          |> put_flash(:info, "#{Score.format(score)} started, please add additional details.")
           |> redirect(to: ~p"/scores/#{score.id}/edit")
         end
 
@@ -56,9 +56,9 @@ defmodule BytebinderWeb.ScoreController do
     score = Repo.get(Score, id)
     changeset = Score.changeset(score, score_params)
     case Repo.update(changeset) do
-      {:ok, _score} ->
+      {:ok, score} ->
         conn
-        |> put_flash(:info, "Score updated.")
+        |> put_flash(:info, "#{Score.format(score)} updated.")
         |> redirect(to: ~p"/scores/")
 
       {:error, changeset} ->

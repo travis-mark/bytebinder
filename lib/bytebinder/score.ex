@@ -30,4 +30,11 @@ defmodule Bytebinder.Score do
     ]
     |> Enum.find_value(nil, fn regex -> Regex.named_captures(regex, input) end)
   end
+
+  @doc """
+  Format score (name and number) for display.
+  """
+  def format(score) do
+    "#{score.game} ##{score.game_no}"
+  end
 end
