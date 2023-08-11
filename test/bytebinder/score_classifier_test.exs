@@ -20,6 +20,10 @@ defmodule Bytebinder.ScoreClassifierTest do
         %{"game" => "Daily Octordle", "game_no" => "501", "score" => "73", "win" => false}
       ],
       [
+        "Daily Sequence Octordle #563 4️⃣5️⃣ 7️⃣8️⃣ 9️⃣🔟 🕚🕛 Score: 66",
+        %{"game" => "Daily Sequence Octordle", "game_no" => "563", "score" => "66", "win" => true}
+      ],
+      [
         "Connections \nPuzzle #51\n🟨🟨🟨🟨\n🟩🟩🟩🟩\n🟪🟪🟪🟪\n🟦🟦🟦🟦",
         %{"game" => "Connections", "game_no" => "51", "score" => "0", "win" => true}
       ],

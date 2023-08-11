@@ -7,8 +7,6 @@
                 <.button type="submit">Save</.button>
             </:actions>
         </.header>
-        <div class="space-y-4 h-screen bg-zinc-900">
-            <.input label="Paste your score here:" id="input" type="textarea" name="score[input]" value={@changeset.data.input} autofocus></.input>
-        </div>
+        <.input label="Paste your score here:" id="input" type="textarea" name="score[input]" value={@changeset.data.input} autofocus></.input>
     </.form>
 </section>

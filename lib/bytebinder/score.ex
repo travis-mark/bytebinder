@@ -50,7 +50,7 @@ defmodule Bytebinder.Score do
   Parse Octordle score
   """
   def parse_octordle(input) do
-    data = Regex.named_captures(~r/(?s)(?<game>Daily Octordle) #(?<game_no>\d+).*Score[:] (?<score>\d+)/, input)
+    data = Regex.named_captures(~r/(?s)(?<game>[A-Za-z ]*Octordle) #(?<game_no>\d+).*Score[:] (?<score>\d+)/, input)
     if data do
       data |> Map.put("win", !String.contains?(input, "🟥"))
     end
