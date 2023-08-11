@@ -60,7 +60,14 @@ defmodule Bytebinder.Score do
   Parse Connections score
   """
   def parse_connections(input) do
-    # TODO: Score and win logic
-    Regex.named_captures(~r/(?s)(?<game>Connections).*Puzzle #(?<game_no>\d+)/, input)
+    data = Regex.named_captures(~r/(?s)(?<game>Connections).*Puzzle #(?<game_no>\d+)/, input)
+    if data do
+      score = Regex.scan(~r/(?s)[🟨🟩🟪🟦]+/, input)
+        |> Enum.map(fn match -> hd(match) end)
+        |> Enum.count(fn line -> line != "🟨🟨🟨🟨" && line != "🟩🟩🟩🟩" && line != "🟪🟪🟪🟪" && line != "🟦🟦🟦🟦" end)
+      data
+        |> Map.put("score", Integer.to_string(score))
+        |> Map.put("win", score < 4)
+    end
   end
 end

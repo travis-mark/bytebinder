@@ -21,7 +21,11 @@ defmodule Bytebinder.ScoreClassifierTest do
       ],
       [
         "Connections \nPuzzle #51\n🟨🟨🟨🟨\n🟩🟩🟩🟩\n🟪🟪🟪🟪\n🟦🟦🟦🟦",
-        %{"game" => "Connections", "game_no" => "51"}
+        %{"game" => "Connections", "game_no" => "51", "score" => "0", "win" => true}
+      ],
+      [
+        "Connections Puzzle #59 🟦🟦🟩🟦 🟦🟦🟦🟩 🟦🟦🟨🟩 🟦🟦🟪🟩",
+        %{"game" => "Connections", "game_no" => "59", "score" => "4", "win" => false}
       ],
     ]
     for [input, expected] <- pairs do
