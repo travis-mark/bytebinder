@@ -13,9 +13,9 @@ Dev Server:
 * Run `flyctl deploy`
 
 ## Upcoming
-* https://hexdocs.pm/phoenix/mix_phx_gen_auth.html - Setup login
-* Replace home page
-* Games model / admin panel
+* https://hexdocs.pm/phoenix/mix_phx_gen_auth.html - TODO: Setup login
+* TODO: Replace home page
+* TODO: Games model / admin panel
 
 ## Questions
 
