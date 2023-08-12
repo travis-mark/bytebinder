@@ -389,6 +389,7 @@ defmodule BytebinderWeb.CoreComponents do
       <div class={[
           "block w-full sm:text-sm sm:leading-6",
           @label && "mt-2",
+          "whitespace-pre",
       ]}><%= Phoenix.HTML.Form.normalize_value(@type, @value) %></div>
     </div>
     """
