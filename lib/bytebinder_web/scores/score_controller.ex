@@ -1,4 +1,4 @@
-alias Bytebinder.{Repo,Score,User}
+alias Bytebinder.{Repo,Score}
 
 defmodule BytebinderWeb.ScoreController do
   use BytebinderWeb, :controller
@@ -15,9 +15,10 @@ defmodule BytebinderWeb.ScoreController do
   end
 
   def new(conn, _params) do
-    user = Repo.get(User, 1) # TODO: Map to logged in user after auth
-    changeset = Score.changeset(%Score{}, %{user: user})
-    render(conn, :new, changeset: changeset, user: user)
+    # user = Repo.get(User, 1) # TODO: Map to logged in user after auth
+    # changeset = Score.changeset(%Score{}, %{user: user})
+    changeset = Score.changeset(%Score{})
+    render(conn, :new, changeset: changeset)
   end
 
   def create(conn, %{"score" => score_params}) do

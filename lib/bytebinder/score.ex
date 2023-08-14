@@ -3,7 +3,6 @@ defmodule Bytebinder.Score do
   import Ecto.Changeset
 
   schema "scores" do
-    belongs_to :user, Bytebinder.User
     field :game, :string
     field :game_no, :string
     field :score, :integer
