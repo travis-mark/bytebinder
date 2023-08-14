@@ -17,7 +17,7 @@ defmodule BytebinderWeb.ScoreController do
   def new(conn, _params) do
     # user = Repo.get(User, 1) # TODO: Map to logged in user after auth
     # changeset = Score.changeset(%Score{}, %{user: user})
-    changeset = Score.changeset(%Score{})
+    changeset = Score.changeset(%Score{}, %{})
     render(conn, :new, changeset: changeset)
   end
 
