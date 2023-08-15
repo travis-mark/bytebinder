@@ -18,8 +18,6 @@ defmodule BytebinderWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    resources "/users", UserController
-    resources "/leagues", LeagueController
     resources "/scores", ScoreController
   end
 
