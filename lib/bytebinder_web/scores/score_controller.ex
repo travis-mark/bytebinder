@@ -15,14 +15,20 @@ defmodule BytebinderWeb.ScoreController do
   end
 
   def new(conn, _params) do
-    # user = Repo.get(User, 1) # TODO: Map to logged in user after auth
-    # changeset = Score.changeset(%Score{}, %{user: user})
-    changeset = Score.changeset(%Score{}, %{})
-    render(conn, :new, changeset: changeset)
+    BytebinderWeb.UserAuth.fetch_current_user(conn, {})
+    if conn.assigns.current_user do
+      changeset = Score.changeset(%Score{}, %{})
+      render(conn, :new, changeset: changeset)
+    else
+      redirect(conn, to: ~p"/users/log_in")
+    end
   end
 
   def create(conn, %{"score" => score_params}) do
-    data = Map.merge(score_params, Score.classify(score_params["input"]) || %{})
+    BytebinderWeb.UserAuth.fetch_current_user(conn, {})
+    data = score_params
+    |> Map.merge(Score.classify(score_params["input"]) || %{})
+    |> Map.merge(%{"user_id" => conn.assigns.current_user.id})
     changeset = Score.changeset(%Score{},  data)
     case Repo.insert(changeset) do
       {:ok, score} ->
@@ -32,7 +38,7 @@ defmodule BytebinderWeb.ScoreController do
           |> redirect(to: ~p"/scores/")
         else
           conn
-          |> put_flash(:info, "#{Score.format(score)} started, please add additional details.")
+          |> put_flash(:info, "Score started, please add additional details.")
           |> redirect(to: ~p"/scores/#{score.id}/edit")
         end
 
