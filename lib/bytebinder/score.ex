@@ -22,7 +22,7 @@ defmodule Bytebinder.Score do
   Attempt to classify score based on pasted input from game.
   """
   def classify(input) do
-    [&parse_wordle/1, &parse_octordle/1, &parse_connections/1]
+    [&parse_wordle/1, &parse_octordle/1, &parse_connections/1, &parse_tradle/1]
     |> Enum.find_value(nil, fn f -> f.(input) end)
   end
 
@@ -67,6 +67,16 @@ defmodule Bytebinder.Score do
       data
         |> Map.put("score", Integer.to_string(score))
         |> Map.put("win", score < 4)
+    end
+  end
+
+  @doc """
+  Parse Tradle score
+  """
+  def parse_tradle(input) do
+    data = Regex.named_captures(~r/(?s)(?<game>Tradle) #(?<game_no>\d+).*(?<score>\d+)\/6/, input)
+    if data do
+      data |> Map.put("win", !String.contains?(input, "🟥"))
     end
   end
 end
