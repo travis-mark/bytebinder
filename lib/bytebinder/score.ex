@@ -9,13 +9,16 @@ defmodule Bytebinder.Score do
     field :win, :boolean
     field :input, :string
 
+    belongs_to :user, Bytebinder.User
+
     timestamps()
   end
 
   @doc false
   def changeset(score, attrs) do
     score
-    |> cast(attrs, [:input, :score, :win, :game, :game_no])
+    |> cast(attrs, [:input, :score, :win, :game, :game_no, :user_id])
+    |> validate_required([:user_id])
   end
 
   @doc """

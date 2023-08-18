@@ -28,6 +28,9 @@
         <:col :let={score} label="Win">
             <%= if score.win, do: "Y" , else: "N" %>
         </:col>
+        <:col :let={score} label="UID">
+            <%= score.user_id %>
+        </:col>
         <:col :let={score} label="Created">
             <%= Bytebinder.format_date(score.inserted_at) %>
         </:col>
