@@ -9,7 +9,7 @@ defmodule Bytebinder.Score do
     field :win, :boolean
     field :input, :string
 
-    belongs_to :user, Bytebinder.User
+    belongs_to :user, Bytebinder.Accounts.User
 
     timestamps()
   end

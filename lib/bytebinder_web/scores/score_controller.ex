@@ -5,13 +5,28 @@ defmodule BytebinderWeb.ScoreController do
   import Ecto.Query
 
   def index(conn, %{"game" => game}) do
-    scores = from(s in Score, where: s.game == ^game, order_by: [desc: s.game_no]) |> Repo.all()
-    render(conn, :index, scores: scores)
+    BytebinderWeb.UserAuth.fetch_current_user(conn, {})
+    if conn.assigns.current_user do
+      scores = from(s in Score,
+        where: s.user_id == ^conn.assigns.current_user.id,
+        where: s.game == ^game,
+        order_by: [desc: s.game_no]) |> Repo.all()
+      render(conn, :index, scores: scores)
+    else
+      redirect(conn, to: ~p"/users/log_in")
+    end
   end
 
   def index(conn, _params) do
-    scores = from(s in Score, order_by: [desc: s.inserted_at]) |> Repo.all()
-    render(conn, :index, scores: scores)
+    BytebinderWeb.UserAuth.fetch_current_user(conn, {})
+    if conn.assigns.current_user do
+      scores = from(s in Score,
+        where: s.user_id == ^conn.assigns.current_user.id,
+        order_by: [desc: s.inserted_at]) |> Repo.all()
+      render(conn, :index, scores: scores)
+    else
+      redirect(conn, to: ~p"/users/log_in")
+    end
   end
 
   def new(conn, _params) do
