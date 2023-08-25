@@ -23,7 +23,18 @@ defmodule BytebinderWeb.ScoreController do
       scores = from(s in Score,
         where: s.user_id == ^conn.assigns.current_user.id,
         order_by: [desc: s.inserted_at]) |> Repo.all()
-      render(conn, :index, scores: scores)
+      summary = from(s in Score,
+        where: s.user_id == ^conn.assigns.current_user.id,
+        group_by: s.game,
+        order_by: s.game,
+        select: %{
+          game: s.game,
+          count: count(s.id),
+          min: min(s.score),
+          avg: avg(s.score),
+          max: max(s.score),
+        }) |> Repo.all()
+      render(conn, :index, scores: scores, summary: summary)
     else
       redirect(conn, to: ~p"/users/log_in")
     end

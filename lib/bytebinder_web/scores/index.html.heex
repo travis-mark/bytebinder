@@ -12,6 +12,30 @@
             <.button href={~p"/scores/new"}>Add Score</.button>
         </:actions>
     </.header>
+    <%= if @summary do %>
+        <.table id="summary" rows={@summary}>
+            <:col :let={summary} label="Game">
+                <%= summary.game || "--" %>
+            </:col>
+            <:col :let={summary} label="Count">
+                <%= summary.count || "--" %>
+            </:col>
+            <:col :let={summary} label="Min">
+                <%= summary.min || "--" %>
+            </:col>
+            <:col :let={summary} label="Avg">
+                <%= summary.avg 
+                    |> Decimal.round(2) 
+                    |> Decimal.to_string()
+                    |> String.trim_trailing("0")
+                    |> String.trim_trailing(".")
+                || "--" %>
+            </:col>
+            <:col :let={summary} label="Max">
+                <%= summary.max || "--" %>
+            </:col>
+        </.table>
+    <% end %>
     <.table 
         id="scores" 
         rows={@scores} 
