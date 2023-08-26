@@ -24,12 +24,14 @@
                 <%= summary.min || "--" %>
             </:col>
             <:col :let={summary} label="Avg">
-                <%= summary.avg 
+                <%= 
+                    summary.avg 
                     |> Decimal.round(2) 
                     |> Decimal.to_string()
                     |> String.trim_trailing("0")
                     |> String.trim_trailing(".")
-                || "--" %>
+                    || "--"
+                 %>
             </:col>
             <:col :let={summary} label="Max">
                 <%= summary.max || "--" %>
