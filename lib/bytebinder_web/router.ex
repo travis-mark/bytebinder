@@ -22,6 +22,9 @@ defmodule BytebinderWeb.Router do
 
     get "/", PageController, :home
     resources "/scores", ScoreController
+    # TODO: ETL
+    # TODO: Admin only
+    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.
