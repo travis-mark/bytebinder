@@ -1,18 +1,23 @@
+<.header>
+    Scores
+    <.button href={~p"/scores/new"}>Add Score</.button>
+    <%= if @games do %>
+    <ul>
+        <li>
+            <.ab href={~p"/scores/"} active={!@conn.query_params["game"]}>All</.ab>
+        </li>
+        <%= for game <- @games do %>
+        <li>
+            <.ab href={~p"/scores/?game=#{game}"} active={@conn.query_params["game"]==game }>
+                <%= game %>
+            </.ab>
+        </li>
+        <% end %>
+    </ul>
+    <% end %>
+</.header>
 <section>
-    <.header>
-        Scores
-        <:subtitle>
-            <.ab href={~p"/scores/"} active={!@conn.query_params["game"]}>All</.ab> |
-            <.ab href={~p"/scores/?game=Connections"} active={@conn.query_params["game"]=="Connections" }>Connections</.ab> |
-            <.ab href={~p"/scores/?game=Daily+Octordle"} active={@conn.query_params["game"]=="Daily Octordle" }>Daily Octordle</.ab>
-            |
-            <.ab href={~p"/scores/?game=Wordle"} active={@conn.query_params["game"]=="Wordle" }>Wordle</.ab>
-        </:subtitle>
-        <:actions>
-            <.button href={~p"/scores/new"}>Add Score</.button>
-        </:actions>
-    </.header>
-    <%= if @summary do %>
+    <%= if !!@conn.query_params["game"] do %>
         <.table id="summary" rows={@summary}>
             <:col :let={summary} label="Game">
                 <%= summary.game || "--" %>
