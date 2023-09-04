@@ -196,7 +196,7 @@ defmodule BytebinderWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="mt-10 space-y-8">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
           <%= render_slot(action, f) %>
@@ -227,7 +227,7 @@ defmodule BytebinderWeb.CoreComponents do
       <a
         href={@href}
         class={[
-          "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
+          "button phx-submit-loading:opacity-75 rounded-lg py-2 px-3",
           "text-sm font-semibold leading-6 text-white active:text-white/80",
           @class
         ]}
@@ -241,7 +241,7 @@ defmodule BytebinderWeb.CoreComponents do
       <button
         type={@type}
         class={[
-          "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
+          "button phx-submit-loading:opacity-75 rounded-lg py-2 px-3",
           "text-sm font-semibold leading-6 text-white active:text-white/80",
           @class
         ]}
@@ -319,7 +319,7 @@ defmodule BytebinderWeb.CoreComponents do
 
     ~H"""
     <div phx-feedback-for={@name}>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
+      <label class="flex items-center gap-4 text-sm leading-6">
         <input type="hidden" name={@name} value="false" />
         <input
           type="checkbox"
@@ -327,7 +327,7 @@ defmodule BytebinderWeb.CoreComponents do
           name={@name}
           value="true"
           checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
+          class="rounded border-zinc-300 focus:ring-0"
           {@rest}
         />
         <%= @label %>
@@ -345,7 +345,7 @@ defmodule BytebinderWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "block w-full rounded-md border bg-white shadow-sm focus:ring-0 sm:text-sm",
+          "block w-full rounded-md border shadow-sm focus:ring-0 sm:text-sm",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400",
           @label && "mt-2"
@@ -369,7 +369,7 @@ defmodule BytebinderWeb.CoreComponents do
         id={@id}
         name={@name}
         class={[
-          "block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+          "block w-full rounded-lg focus:ring-0 sm:text-sm sm:leading-6",
           "min-h-[6rem] phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400",
@@ -406,7 +406,7 @@ defmodule BytebinderWeb.CoreComponents do
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+          "block w-full rounded-lg focus:ring-0 sm:text-sm sm:leading-6",
           "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400",
@@ -427,7 +427,7 @@ defmodule BytebinderWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <label for={@for} class="block text-sm font-semibold leading-6">
       <%= render_slot(@inner_block) %>
     </label>
     """
@@ -460,10 +460,10 @@ defmodule BytebinderWeb.CoreComponents do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
+        <h1 class="text-lg font-semibold leading-8">
           <%= render_slot(@inner_block) %>
         </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <p :if={@subtitle != []} class="mt-2 text-sm leading-6">
           <%= render_slot(@subtitle) %>
         </p>
       </div>
@@ -506,25 +506,25 @@ defmodule BytebinderWeb.CoreComponents do
     ~H"""
     <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
       <table class="w-[40rem] mt-4 sm:w-full">
-        <thead class="text-sm text-left gap-6 text-zinc-500">
+        <thead class="text-sm text-left gap-6 font-bold">
           <tr>
-            <th :for={col <- @col} class="p-0 pr-6 pb-4 font-normal"><%= col[:label] %></th>
+            <th :for={col <- @col} class="p-0 pr-6 pb-4"><%= col[:label] %></th>
             <th class="relative p-0 pb-4"><span class="sr-only"><%= gettext("Actions") %></span></th>
           </tr>
         </thead>
         <tbody
           id={@id}
           phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
-          class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm gap-6 text-zinc-700"
+          class="relative divide-y divide-zinc-100 border-t border-zinc-200 text-sm gap-6"
         >
-          <tr :for={row <- @rows} id={@row_id && @row_id.(row)} class="group hover:bg-zinc-50">
+          <tr :for={row <- @rows} id={@row_id && @row_id.(row)} class="group">
             <td
               :for={{col, i} <- Enum.with_index(@col)}
               phx-click={@row_click && @row_click.(row)}
               class={["relative p-0", @row_click && "hover:cursor-pointer"]}
             >
               <div class="block min-h-[50px] flex items-center">
-                <span class={["relative", i == 0 && "font-semibold text-zinc-900"]}>
+                <span class={["relative", i == 0 && "font-semibold"]}>
                   <%= render_slot(col, @row_item.(row)) %>
                 </span>
               </div>
@@ -534,7 +534,7 @@ defmodule BytebinderWeb.CoreComponents do
                 <span class="absolute -inset-y-px -right-4 left-0 group-hover:bg-zinc-50 sm:rounded-r-xl" />
                 <span
                   :for={action <- @action}
-                  class="relative ml-4 font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
+                  class="relative ml-4 font-semibold leading-6 hover:text-zinc-700"
                 >
                   <%= render_slot(action, @row_item.(row)) %>
                 </span>
@@ -589,7 +589,7 @@ defmodule BytebinderWeb.CoreComponents do
     <div class="mt-16">
       <.link
         navigate={@navigate}
-        class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
+        class="text-sm font-semibold leading-6 hover:text-zinc-700"
       >
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
         <%= render_slot(@inner_block) %>

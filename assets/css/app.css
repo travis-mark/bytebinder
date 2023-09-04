@@ -7,10 +7,44 @@
 /* Variables */
 
 :root {
-    --background: rgb(235, 235, 240);
-    --mint: rgb(12, 129, 123);
+    --bg1: #09090b; /* tailwind/zinc-950 */
+    --bg2: #18181b; /* tailwind/zinc-900 */
+    --fg1: #fafafa; /* tailwind/zinc-50 */
+    --mint0: rgb(20, 199, 190);
+    --mint1: rgb(12, 129, 123);
+    --mint2: rgb(40, 148, 143);
 }
 
+/* Main content */
+body { 
+    background-color: var(--bg1);
+    color: var(--fg1);
+}
+
+/* Tables */
+tbody tr:hover {
+    background-color: var(--mint1);
+}
+
+/* Input */
+
+input, textarea {
+    background-color: var(--bg2) !important;
+    caret-color: var(--mint0); 
+    color: var(--fg1);
+}
+
+[type='checkbox']:checked {
+    /* TODO: Start HERE */
+}
+
+.button {
+    background-color: var(--mint1);
+}
+
+.button:hover {
+    background-color: var(--mint2);
+}
 
 /* Menu */
 .menu,
@@ -22,22 +56,22 @@
 .menu li { position: relative; padding: 8px; }
 
 .menu ul li { 
-    float: none; background-color: var(--background); margin: 0; padding: 4px; line-height: 25px; 
+    float: none; background-color: var(--bg1); margin: 0; padding: 4px; line-height: 25px; 
 }
 
 .menu li:hover,
 .menu li:hover > a, 
 .menu ul li:hover,
 .menu ul li:hover a {
-    background-color: var(--mint);
-    color: #fff;
+    background-color: var(--mint1);
+    color: var(--fg1);
 }
 
 .menu a:link,
 .menu a:visited {
     display: block;
     text-align: left; text-decoration: none;
-    color: #000;
+    color: var(--fg1);
 }
 
 .menu li:hover ul {
