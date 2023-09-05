@@ -22,6 +22,7 @@ defmodule BytebinderWeb.Router do
 
     get "/", PageController, :home
     resources "/scores", ScoreController
+    resources "/scorekeeper", ScorekeeperController
     # TODO: ETL
     # TODO: Admin only
     resources "/games", GameController
