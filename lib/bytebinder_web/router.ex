@@ -21,6 +21,7 @@ defmodule BytebinderWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/apps", AppsController
     resources "/scores", ScoreController
     resources "/scorekeeper", ScorekeeperController
     # TODO: ETL

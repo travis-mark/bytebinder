@@ -1,14 +1,16 @@
 <header class="topbar border-b border-zinc-200">
   <div class="flex flex-1 font-semibold gap-2 items-center justify-between mx-auto max-w-2xl p-2 text-sm">
     <ul class="menu list-none flex">
-      <li><a href={~p"/"}>
-          Scorekeeper
-        </a></li>
+      <li>
+        <a class="h1" href={~p"/"}>
+          Bytebinder
+        </a>
+      </li>
     </ul>
     <ul class="menu list-none flex">
       <%= if @current_user do %>
-      <li><a href={~p"/scores/"}>
-        My Scores
+      <li><a href={~p"/apps"}>
+        Apps
       </a></li>
       <% end %>
       <li><a href="#">Account</a>
