@@ -1,36 +1,34 @@
 <div>
-    <div style="display: flex; flex-direction: row; justify-content: space-between">
-        <a href={~p"/"}>
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #777; padding: 8px;">
+        <a href={~p"/"} style="display: flex; flex-direction: row; align-items: center; gap: 8px;">
             <!-- TODO App Icons -->
-            <!-- TODO H1 Font -->
-            <span>[&lt;3]</span>
-            <span>Bytebinder</span>
+            <span class="h1">:[&lt;3]</span>
+            <span class="h1">Bytebinder</span>
         </a>
-        <div>
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 8px;">
             <!-- TODO App Picker -->
-            <a href="">•••</a>
+            <a href="" class="h1">•••</a>
             <!-- TODO User Mgmt -->
-            <a href="">/shrug</a>
+            <a href="" class="h1">\°/</a>
         </div>
     </div>
     <!-- TODO Vert rule -->
-    <div style="display: flex; flex-direction: row; justify-content: space-between">
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #777; padding: 8px;">
         <a href="#">
-            <!-- TODO H2 Font -->
-            <span>Scorekeeper</span>
+            <span class="h2">Scorekeeper</span>
         </a>
         <div>
             <!-- TODO Add Button -->
             <a href="">Add Score</a>
         </div>
     </div>
-    <div style="display: flex; flex-direction: column; justify-content: space-between">
+    <div style="display: flex; flex-direction: row; padding: 8px;">
         <div>
             <!-- TODO Menu -->
             <ul>
-                <li>Games</li>
+                <li class="h3">Games</li>
                 <li>
-                    <ul>
+                    <ul style="margin-left: 4px;">
                         <li>> Wordle</li>
                         <li>Octordle</li>
                         <li>...</li>
@@ -38,9 +36,62 @@
                     </ul>
                 </li>
             </ul>
+            <ul>
+                <li class="h3">Friends</li>
+                <li>
+                    <ul style="margin-left: 4px;">
+                        <li>Melanie</li>
+                        <li>Josh</li>
+                        <li>...</li>
+                        <li>More</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li class="h3">Explore</li>
+                <li>
+                    <ul style="margin-left: 4px;">
+                        <li>Tradle</li>
+                        <li>Spelling Bee</li>
+                        <li>Connections</li>
+                        <li>More</li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div>
+        <div style="flex-grow: 1;">
             <!-- TODO Content -->
+            <div id="graph">
+                <!-- TODO Graph -->
+            </div>
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Score</th>
+                </thead>
+                <tbody>
+                    <td>682</td>
+                    <td>Sep 3 2021</td>
+                    <td>65</td>
+                    <td>
+
+                        <!-- TODO Bar -->
+                    </td>
+                </tbody>
+            </table>
+            <div style="display: flex; flex-direction: row; align-content: center; justify-content: space-between;">
+                <div>xx - xx of xx</div>
+                <div>
+                    <a>&lt;</a>
+                    <a>1</a>
+                    <a>2</a>
+                    <a>3</a>
+                    <a>4</a>
+                    <a>5</a>
+                    <a>&gt;</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

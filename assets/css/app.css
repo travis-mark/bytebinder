@@ -21,6 +21,10 @@ body {
     color: var(--fg1);
 }
 
+h1, .h1 { font-size: 1.75em; }
+h2, .h2 { font-size: 1.50em; }
+h3, .h3 { font-size: 1.25em; }
+
 /* Tables */
 tbody tr:hover {
     background-color: var(--mint1);
