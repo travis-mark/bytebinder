@@ -10,17 +10,23 @@
     </div>
 </header>
 <section>
-    <div style="display: flex; flex-direction: row; padding: 8px;">
+    <div style="display: flex; flex-direction: row; padding: 8px; gap: 8px;">
         <div>
             <!-- TODO Menu -->
             <ul>
                 <li class="h3">Games</li>
                 <li>
                     <ul style="margin-left: 4px;">
-                        <li>> Wordle</li>
-                        <li>Octordle</li>
-                        <li>...</li>
-                        <li>More</li>
+                        <li>
+                            <.ab href={~p"/scorekeeper/"} active={!@conn.query_params["game"]}>All</.ab>
+                        </li>
+                        <%= for game <- @my_games do %>
+                        <li>
+                            <.ab href={~p"/scorekeeper/?game=#{game}"} active={@conn.query_params["game"]==game }>
+                                <%= game %>
+                            </.ab>
+                        </li>
+                        <% end %>
                     </ul>
                 </li>
             </ul>
@@ -48,26 +54,24 @@
             </ul>
         </div>
         <div style="flex-grow: 1;">
-            <!-- TODO Content -->
             <div id="graph">
                 <!-- TODO Graph -->
             </div>
-            <table>
-                <thead>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Score</th>
-                </thead>
-                <tbody>
-                    <td>682</td>
-                    <td>Sep 3 2021</td>
-                    <td>65</td>
-                    <td>
-
-                        <!-- TODO Bar -->
-                    </td>
-                </tbody>
-            </table>
+            <.table id="scores" rows={@scores} row_click={fn score -> JS.navigate(~p"/scores/#{score.id}") end}>
+                <:col :if={!@conn.query_params["game"]} :let={score} label="Game">
+                    <%= score.game || "--" %>
+                </:col>
+                <:col :let={score} label="#">
+                    <%= score.game_no || "--" %>
+                </:col>
+                <:col :let={score} label="Date">
+                    <%= Bytebinder.format_date(score.inserted_at) %>
+                </:col>
+                <:col :let={score} label="Score">
+                    <%= score.score || "--" %>
+                </:col>
+                <!-- TODO Bar -->
+            </.table>
             <div style="display: flex; flex-direction: row; align-content: center; justify-content: space-between;">
                 <div>xx - xx of xx</div>
                 <div>
