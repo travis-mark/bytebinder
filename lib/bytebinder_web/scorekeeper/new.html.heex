@@ -1,0 +1,11 @@
+<section>
+    <.form for={@changeset} action={~p"/scorekeeper/"}>
+        <.header>
+            Add Score
+            <:actions>
+                <.button type="submit">Save</.button>
+            </:actions>
+        </.header>
+        <.input label="Paste your score here:" id="input" type="textarea" name="score[input]" value={@changeset.data.input} autofocus style="height: calc(100vh - 160px)"></.input>
+    </.form>
+</section>
