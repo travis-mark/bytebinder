@@ -69,7 +69,9 @@
                 <:col :let={score} label="Score">
                     <%= score.score || "--" %>
                 </:col>
-                <!-- TODO Bar -->
+                <:col :if={@conn.query_params["game"]} :let={score} label="">
+                    <div class="bg-primary" style={"width: #{score.score}px; height: 4px;"}></div>
+                </:col>
             </.table>
             <div style="display: flex; flex-direction: row; align-content: center; justify-content: space-between;">
                 <div>xx - xx of xx</div>
