@@ -12,10 +12,6 @@ Dev Server:
 * Run `mix phx.gen.release`
 * Run `flyctl deploy`
 
-## Upcoming
-* TODO: Replace home page
-* TODO: Games model / admin panel
-
 ## Questions
 
 The standard resource set includes:

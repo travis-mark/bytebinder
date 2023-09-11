@@ -4,8 +4,7 @@
 
 /* This file is for your main application CSS */
 
-/* Variables */
-
+/* Colors */
 :root {
     --bg1: #09090b; /* tailwind/zinc-950 */
     --bg2: #18181b; /* tailwind/zinc-900 */
@@ -14,6 +13,8 @@
     --mint1: rgb(12, 129, 123);
     --mint2: rgb(40, 148, 143);
 }
+.bg-primary { background-color: var(--mint1); }
+.fg-primary { color: var(--mint0); }
 
 /* Main content */
 body { 
