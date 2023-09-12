@@ -23,6 +23,7 @@ defmodule BytebinderWeb.ScorekeeperController do
           |> order_by([s], desc: s.game_no)
       end
       scores = Repo.all(scores_query)
+        |> Enum.map(fn score -> Map.put(score, :game_date, Score.game_date(score)) end)
       render(conn, :index,
         my_games: my_games,
         friends: friends,

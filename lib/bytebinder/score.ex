@@ -82,4 +82,20 @@ defmodule Bytebinder.Score do
       data |> Map.put("win", !String.contains?(input, "🟥"))
     end
   end
+
+  def game_date(score) do
+    case score.game do
+      "Wordle" ->
+        {:ok, original_date} = Date.from_iso8601("2021-06-19")
+        game_no = String.to_integer(score.game_no)
+        Date.add(original_date, game_no)
+      "Daily Octordle" ->
+        {:ok, original_date} = Date.from_iso8601("2022-01-24")
+        game_no = String.to_integer(score.game_no)
+        Date.add(original_date, game_no)
+      _ ->
+        {:ok, dummy_date} = Date.from_iso8601("2001-01-01")
+        dummy_date
+    end
+  end
 end

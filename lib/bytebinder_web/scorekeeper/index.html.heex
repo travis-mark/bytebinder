@@ -64,7 +64,7 @@
                     <%= score.game_no || "--" %>
                 </:col>
                 <:col :let={score} label="Date">
-                    <%= Bytebinder.format_date(score.inserted_at) %>
+                    <%= score.game_date %>
                 </:col>
                 <:col :let={score} label="Score">
                     <%= score.score || "--" %>
