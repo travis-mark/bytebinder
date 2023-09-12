@@ -24,9 +24,6 @@ defmodule BytebinderWeb.Router do
     resources "/apps", AppsController
     resources "/scores", ScoreController
     resources "/scorekeeper", ScorekeeperController
-    # TODO: ETL
-    # TODO: Admin only
-    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.
