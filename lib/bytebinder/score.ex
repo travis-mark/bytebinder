@@ -83,6 +83,9 @@ defmodule Bytebinder.Score do
     end
   end
 
+  @doc """
+  Given a game name and number, compute the date of the game.
+  """
   def game_date(score) do
     case score.game do
       "Wordle" ->
