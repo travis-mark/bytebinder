@@ -33,10 +33,13 @@
                 <li class="h3 fg-primary">Friends</li>
                 <li>
                     <ul style="margin-left: 4px;">
-                        <li>Melanie</li>
-                        <li>Josh</li>
-                        <li>...</li>
-                        <li>More</li>
+                        <%= for friend <- @friends do %>
+                        <li>
+                            <a href="#">
+                                <%= friend.email %>
+                            </a>
+                        </li>
+                        <% end %>
                     </ul>
                 </li>
             </ul>

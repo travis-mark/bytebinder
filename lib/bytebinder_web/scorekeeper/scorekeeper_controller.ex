@@ -1,4 +1,5 @@
 alias Bytebinder.{Repo,Score}
+alias Bytebinder.Accounts.User
 
 defmodule BytebinderWeb.ScorekeeperController do
   use BytebinderWeb, :controller
@@ -11,7 +12,7 @@ defmodule BytebinderWeb.ScorekeeperController do
         where: s.user_id == ^conn.assigns.current_user.id,
         distinct: s.game,
         select: s.game) |> Repo.all()
-      friends = []
+      friends = from(u in User) |> Repo.all()
       other_games = []
       scores_query = from(s in Score,
         where: s.user_id == ^conn.assigns.current_user.id)
