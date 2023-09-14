@@ -41,7 +41,7 @@ input, textarea {
 }
 
 [type='checkbox']:checked {
-    /* TODO: Start HERE */
+    background-color: var(--mint1) !important;
 }
 
 .button {
