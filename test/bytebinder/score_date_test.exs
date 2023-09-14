@@ -8,6 +8,10 @@ defmodule Bytebinder.ScoreDateTest do
         ~D[2023-09-11]
       ],
       [
+        %{:game => "Daily Dordle", :game_no => "0597"},
+        ~D[2023-09-13]
+      ],
+      [
         %{:game => "Daily Octordle", :game_no => "595"},
         ~D[2023-09-11]
       ],

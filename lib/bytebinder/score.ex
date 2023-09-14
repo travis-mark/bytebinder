@@ -25,7 +25,7 @@ defmodule Bytebinder.Score do
   Attempt to classify score based on pasted input from game.
   """
   def classify(input) do
-    [&parse_wordle/1, &parse_octordle/1, &parse_connections/1, &parse_tradle/1]
+    [&parse_wordle/1, &parse_dordle/1, &parse_octordle/1, &parse_connections/1, &parse_tradle/1]
     |> Enum.find_value(nil, fn f -> f.(input) end)
   end
 
@@ -45,6 +45,19 @@ defmodule Bytebinder.Score do
       nil -> nil
       s when s in ["1", "2", "3", "4", "5", "6"] -> data |> Map.put("win", true)
       "X" -> data |> Map.put("win", false) |> Map.put("score", "7")
+    end
+  end
+
+  @doc """
+  Parse Dordle score
+  """
+  def parse_dordle(input) do
+    data = Regex.named_captures(~r/(?s)(?<game>[A-Za-z ]*Dordle) (?<game_no>\d+) (?<left>\d)[&](?<right>\d)\/7/, input) |> IO.inspect()
+    if data["left"] && data["right"] do
+      score = String.to_integer(data["left"]) + String.to_integer(data["right"])
+      %{"game" => data["game"], "game_no" => data["game_no"], "score" => Integer.to_string(score), "win" => true}
+    else
+      nil
     end
   end
 
@@ -90,6 +103,10 @@ defmodule Bytebinder.Score do
     case score.game do
       "Wordle" ->
         {:ok, original_date} = Date.from_iso8601("2021-06-19")
+        game_no = String.to_integer(score.game_no)
+        Date.add(original_date, game_no)
+      "Daily Dordle" ->
+        {:ok, original_date} = Date.from_iso8601("2022-01-24")
         game_no = String.to_integer(score.game_no)
         Date.add(original_date, game_no)
       "Daily Octordle" ->

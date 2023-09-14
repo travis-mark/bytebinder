@@ -35,6 +35,10 @@ defmodule Bytebinder.ScoreClassifierTest do
         "#Tradle #527 2/6 🟩🟩🟩🟩🟨 🟩🟩🟩🟩🟩 https://oec.world/en/tradle",
         %{"game" => "Tradle", "game_no" => "527", "score" => "2", "win" => true}
       ],
+      [
+        "Daily Dordle 0597 4&6/7 🟨🟨⬜⬜⬜ 🟨⬜🟨⬜⬜ ⬜⬜⬜⬜⬜ ⬜⬜⬜⬜⬜ ⬜⬜🟨🟨⬜ ⬜⬜⬜⬜⬜ 🟩🟩🟩🟩🟩 ⬜🟨⬜⬜⬜ ⬛⬛⬛⬛⬛ ⬜🟩🟨🟩🟩 ⬛⬛⬛⬛⬛ 🟩🟩🟩🟩🟩 zaratustra.itch.io/dordle",
+        %{"game" => "Daily Dordle", "game_no" => "0597", "score" => "10", "win" => true}
+      ]
     ]
     for [input, expected] <- pairs do
       output = Bytebinder.Score.classify(input)
