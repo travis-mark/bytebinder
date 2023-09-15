@@ -53,10 +53,10 @@ defmodule BytebinderWeb.ScorekeeperController do
     changeset = Score.changeset(%Score{},  data)
     case Repo.insert(changeset) do
       {:ok, score} ->
-        if data["score"] do
+        if data["score"] && data["game"] do
           conn
           |> put_flash(:info, "#{Score.format(score)} added.")
-          |> redirect(to: ~p"/scorekeeper/")
+          |> redirect(to: ~p"/scorekeeper/?game=#{data["game"]}")
         else
           conn
           |> put_flash(:info, "Score started, please add additional details.")
