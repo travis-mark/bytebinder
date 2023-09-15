@@ -33,7 +33,6 @@ tbody tr:hover {
 }
 
 /* Input */
-
 input, textarea {
     background-color: var(--bg2) !important;
     caret-color: var(--mint0); 
@@ -82,4 +81,10 @@ input, textarea {
 
 .menu li:hover ul {
     display: block;
+}
+
+/* Charts */
+.plot { 
+    fill: var(--mint1);
+    background: var(--bg2) !important;
 }
