@@ -20,9 +20,7 @@ defmodule BytebinderWeb.Router do
   scope "/", BytebinderWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    resources "/apps", AppsController
-    resources "/scores", ScoreController
+    get "/", AppsController, :index
     resources "/scorekeeper", ScorekeeperController
   end
 

@@ -58,7 +58,7 @@ input, textarea {
 .menu ul { 
     position: absolute; top: 36px; right: 0; width: 200px; display: none;
 }
-.menu li { position: relative; padding: 8px; }
+.menu li { position: relative; padding: 8px 0; }
 
 .menu ul li { 
     float: none; background-color: var(--bg1); margin: 0; padding: 4px; line-height: 25px; 

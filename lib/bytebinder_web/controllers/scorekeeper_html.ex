@@ -1,5 +1,5 @@
 defmodule BytebinderWeb.ScorekeeperHTML do
   use BytebinderWeb, :html
 
-  embed_templates "*"
+  embed_templates "scorekeeper_html/*"
 end

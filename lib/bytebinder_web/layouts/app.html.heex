@@ -1,5 +1,5 @@
 <header class="topbar border-b border-zinc-200">
-  <div class="flex flex-1 font-semibold gap-2 items-center justify-between mx-auto max-w-2xl p-2 text-sm">
+  <div class="flex flex-1 font-semibold gap-2 items-center justify-between mx-auto max-w-2xl text-sm">
     <ul class="menu list-none flex">
       <li>
         <a class="h1" href={~p"/"}>
@@ -7,12 +7,7 @@
         </a>
       </li>
     </ul>
-    <ul class="menu list-none flex">
-      <%= if @current_user do %>
-      <li><a href={~p"/apps"}>
-        Apps
-      </a></li>
-      <% end %>
+    <ul class="menu list-none flex">  
       <li><a href="#">Account</a>
         <ul>
           <%= if @current_user do %>
