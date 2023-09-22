@@ -59,14 +59,11 @@
                 <:col :let={score} label="Score">
                     <%= score.score || "--" %>
                 </:col>
-                <:col :if={@conn.query_params["game"]} :let={score} label="">
-                    <div class="bg-primary" style={"width: #{score.score}px; height: 4px;"}></div>
-                </:col>
             </.table>
         </div>
     </div>
 </section>
-<%= if @conn.query_params["game"] do %>
+<%= if @conn.query_params["game"] == "Daily Octordle" do %>
 <script type="module">
     import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
     const data = [
@@ -75,9 +72,11 @@
         <% end %>
     ]
     const plot = Plot.plot({
+        // TODO: Hide X label
+        y: { domain: [90, 30] },
         className: 'plot',
         marks: [
-            Plot.lineY(data, { x: "No", y: "Score" }),
+            Plot.lineY(data, { x: "No", y: "Score", tip: "xy" }),
             Plot.ruleY([0])
         ]
     });
@@ -87,3 +86,8 @@
     }, 100);
 </script>
 <% end %>
+<style>
+    text {
+        fill: white;
+    }
+</style>

@@ -88,3 +88,7 @@ input, textarea {
     fill: var(--mint1);
     background: var(--bg2) !important;
 }
+g[aria-label="tip"] {
+    fill: var(--mint1);
+    
+}
