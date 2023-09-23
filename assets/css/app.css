@@ -92,3 +92,6 @@ g[aria-label="tip"] {
     fill: var(--mint1);
     
 }
+g>text {
+    fill: white;
+}

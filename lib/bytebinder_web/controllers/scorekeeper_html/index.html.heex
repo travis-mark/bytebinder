@@ -28,21 +28,6 @@
                     </ul>
                 </li>
             </ul>
-            <ul>
-                <!-- TODO Friends -->
-                <li class="h3 fg-primary">Friends</li>
-                <li>
-                    <ul style="margin-left: 4px;">
-                        <%= for friend <- @friends do %>
-                        <li>
-                            <a href="#">
-                                <%= friend.email %>
-                            </a>
-                        </li>
-                        <% end %>
-                    </ul>
-                </li>
-            </ul>
         </div>
         <div style="flex-grow: 1;">
             <div id="graph"></div>
@@ -68,11 +53,10 @@
     import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
     const data = [
         <%= for score <- @scores do %>
-        { No: "<%= score.game_no %>", Score: "<%= score.score %>", Player: "<%= score.user_id %>" },
+        { No: <%= score.game_no %>, Score: "<%= score.score %>", Player: "<%= score.user_id %>" },
         <% end %>
     ]
     const plot = Plot.plot({
-        // TODO: Hide X label
         y: { domain: [90, 30] },
         className: 'plot',
         marks: [
@@ -86,8 +70,3 @@
     }, 100);
 </script>
 <% end %>
-<style>
-    text {
-        fill: white;
-    }
-</style>
