@@ -1,0 +1,45 @@
+<.header>
+  Listing Nail watch
+  <:actions>
+    <.link patch={~p"/nail_watch/new"}>
+      <.button>New Nail watch</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="nail_watch"
+  rows={@streams.nail_watch_collection}
+  row_click={fn {_id, nail_watch} -> JS.navigate(~p"/nail_watch/#{nail_watch}") end}
+>
+  <:col :let={{_id, nail_watch}} label="Date"><%= nail_watch.date %></:col>
+  <:col :let={{_id, nail_watch}} label="Nails"><%= nail_watch.nails %></:col>
+  <:col :let={{_id, nail_watch}} label="Skin"><%= nail_watch.skin %></:col>
+  <:col :let={{_id, nail_watch}} label="Blood"><%= nail_watch.blood %></:col>
+  <:col :let={{_id, nail_watch}} label="Flag"><%= nail_watch.flag %></:col>
+  <:action :let={{_id, nail_watch}}>
+    <div class="sr-only">
+      <.link navigate={~p"/nail_watch/#{nail_watch}"}>Show</.link>
+    </div>
+    <.link patch={~p"/nail_watch/#{nail_watch}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, nail_watch}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: nail_watch.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="nail_watch-modal" show on_cancel={JS.patch(~p"/nail_watch")}>
+  <.live_component
+    module={BytebinderWeb.NailWatchLive.FormComponent}
+    id={@nail_watch.id || :new}
+    title={@page_title}
+    action={@live_action}
+    nail_watch={@nail_watch}
+    patch={~p"/nail_watch"}
+  />
+</.modal>

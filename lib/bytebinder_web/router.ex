@@ -24,6 +24,17 @@ defmodule BytebinderWeb.Router do
     resources "/scorekeeper", ScorekeeperController
   end
 
+  scope "/nail_watch", BytebinderWeb do
+    pipe_through :browser
+
+    live "/", NailWatchLive.Index, :index
+    live "/new", NailWatchLive.Index, :new
+    live "/:id/edit", NailWatchLive.Index, :edit
+
+    live "/:id", NailWatchLive.Show, :show
+    live "/:id/show/edit", NailWatchLive.Show, :edit
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", BytebinderWeb do
   #   pipe_through :api

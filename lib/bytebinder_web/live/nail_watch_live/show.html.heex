@@ -1,0 +1,30 @@
+<.header>
+  Nail watch <%= @nail_watch.id %>
+  <:subtitle>This is a nail_watch record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/nail_watch/#{@nail_watch}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit nail_watch</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Date"><%= @nail_watch.date %></:item>
+  <:item title="Nails"><%= @nail_watch.nails %></:item>
+  <:item title="Skin"><%= @nail_watch.skin %></:item>
+  <:item title="Blood"><%= @nail_watch.blood %></:item>
+  <:item title="Flag"><%= @nail_watch.flag %></:item>
+</.list>
+
+<.back navigate={~p"/nail_watch"}>Back to nail_watch</.back>
+
+<.modal :if={@live_action == :edit} id="nail_watch-modal" show on_cancel={JS.patch(~p"/nail_watch/#{@nail_watch}")}>
+  <.live_component
+    module={BytebinderWeb.NailWatchLive.FormComponent}
+    id={@nail_watch.id}
+    title={@page_title}
+    action={@live_action}
+    nail_watch={@nail_watch}
+    patch={~p"/nail_watch/#{@nail_watch}"}
+  />
+</.modal>
