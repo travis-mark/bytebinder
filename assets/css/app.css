@@ -7,15 +7,20 @@
 /* Colors */
 :root {
     --bg1: #09090b; /* tailwind/zinc-950 */
+    --bg1-50o: #09090b7f;
+        /* tailwind/zinc-950 with 50% opacity */
     --bg2: #18181b; /* tailwind/zinc-900 */
     --fg1: #fafafa; /* tailwind/zinc-50 */
     --mint0: rgb(20, 199, 190);
     --mint1: rgb(12, 129, 123);
     --mint2: rgb(40, 148, 143);
     --gray: rgb(80, 90, 90);
+    
 }
 .bg-primary { background-color: var(--mint1); }
 .fg-primary { color: var(--mint0); }
+.bg1 { background-color: var(--bg1) }
+.bg1-50o { background-color: var(--bg1-50o) }
 
 /* Main content */
 body { 

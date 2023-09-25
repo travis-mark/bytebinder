@@ -1,7 +1,7 @@
 defmodule BytebinderWeb.NailWatchLive.Show do
   use BytebinderWeb, :live_view
-
   alias Bytebinder.Notebook
+  on_mount {BytebinderWeb.UserAuth, :mount_current_user}
 
   @impl true
   def mount(_params, _session, socket) do

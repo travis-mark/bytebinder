@@ -16,6 +16,6 @@ defmodule Bytebinder.Notebook.NailWatch do
   def changeset(nail_watch, attrs) do
     nail_watch
     |> cast(attrs, [:date, :nails, :skin, :blood, :flag])
-    |> validate_required([:date, :nails, :skin, :blood, :flag])
+    |> validate_required([:date, :nails, :skin, :blood])
   end
 end

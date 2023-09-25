@@ -1,9 +1,7 @@
 defmodule BytebinderWeb.NailWatchLive.Index do
   use BytebinderWeb, :live_view
-
   alias Bytebinder.Notebook
   alias Bytebinder.Notebook.NailWatch
-
   on_mount {BytebinderWeb.UserAuth, :mount_current_user}
 
   @impl true
