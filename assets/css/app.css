@@ -15,7 +15,6 @@
     --mint1: rgb(12, 129, 123);
     --mint2: rgb(40, 148, 143);
     --gray: rgb(31, 35, 35);
-    
 }
 .bg-primary { background-color: var(--mint1); }
 .fg-primary { color: var(--mint0); }

@@ -10,6 +10,7 @@ defmodule BytebinderWeb.ScorekeeperController do
     if conn.assigns.current_user do
       my_games = from(s in Score,
         where: s.user_id == ^conn.assigns.current_user.id,
+        where: not is_nil(s.game),
         distinct: s.game,
         select: s.game) |> Repo.all()
       friends = from(u in User) |> Repo.all()
