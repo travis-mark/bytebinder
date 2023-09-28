@@ -4,6 +4,9 @@
             Score
             <:actions>
                 <.button href={~p"/scorekeeper/#{@changeset.data.id}/edit"}>Edit</.button>
+                <.form for={} action={~p"/scorekeeper/#{@changeset.data.id}"} method="DELETE">
+                    <.button type="submit">Delete</.button>
+                </.form>
             </:actions>
         </.header>
         <div class='space-y-4'>

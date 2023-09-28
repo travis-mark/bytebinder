@@ -36,7 +36,7 @@ defmodule BytebinderWeb.ScorekeeperController do
     end
   end
 
-    def new(conn, _params) do
+  def new(conn, _params) do
     BytebinderWeb.UserAuth.fetch_current_user(conn, {})
     if conn.assigns.current_user do
       changeset = Score.changeset(%Score{}, %{})
@@ -69,7 +69,7 @@ defmodule BytebinderWeb.ScorekeeperController do
     end
   end
 
-    def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}) do
     score = Repo.get(Score, id)
     changeset = Score.changeset(score, %{})
     render(conn, :show, changeset: changeset)
@@ -88,6 +88,19 @@ defmodule BytebinderWeb.ScorekeeperController do
       {:ok, score} ->
         conn
         |> put_flash(:info, "#{Score.format(score)} updated.")
+        |> redirect(to: ~p"/scorekeeper/")
+
+      {:error, changeset} ->
+        render(conn, :edit, changeset: changeset)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    score = Repo.get(Score, id)
+    case Repo.delete(score) do
+      {:ok, _score} ->
+        conn
+        |> put_flash(:info, "Score deleted.")
         |> redirect(to: ~p"/scorekeeper/")
 
       {:error, changeset} ->
