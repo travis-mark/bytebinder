@@ -1,3 +1,14 @@
+<header>
+    <div
+        style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #777; padding: 0 8px 8px 8px;">
+        <a href={~p"/scorekeeper/"}>
+            <span class="h2">Scorekeeper</span>
+        </a>
+        <div>
+            <.account_menu current_user={@current_user} />
+        </div>
+    </div>
+</header>
 <section>
     <.form for={@changeset} action={~p"/scorekeeper/"}>
         <.header>

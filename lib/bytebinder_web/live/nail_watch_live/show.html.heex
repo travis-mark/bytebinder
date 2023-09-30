@@ -1,12 +1,14 @@
-<.header>
-  Nail watch <%= @nail_watch.id %>
-  <:subtitle>This is a nail_watch record from your database.</:subtitle>
-  <:actions>
-    <.link patch={~p"/nail_watch/#{@nail_watch}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit nail_watch</.button>
-    </.link>
-  </:actions>
-</.header>
+<header>
+  <div
+    style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #777; padding: 0 8px 8px 8px;">
+    <a href={~p"/nail_watch/"}>
+      <span class="h2">Nailwatch</span>
+    </a>
+    <div>
+      <.account_menu current_user={@current_user} />
+    </div>
+  </div>
+</header>
 
 <.list>
   <:item title="Date"><%= @nail_watch.date %></:item>

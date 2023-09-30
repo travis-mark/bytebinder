@@ -1,11 +1,14 @@
-<.header>
-  Listing Nail watch
-  <:actions>
-    <.link patch={~p"/nail_watch/new"}>
-      <.button>New Nail watch</.button>
-    </.link>
-  </:actions>
-</.header>
+<header>
+  <div
+    style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #777; padding: 0 8px 8px 8px;">
+    <a href={~p"/nail_watch/"}>
+      <span class="h2">Nailwatch</span>
+    </a>
+    <div>
+      <.account_menu current_user={@current_user} />
+    </div>
+  </div>
+</header>
 
 <.table
   id="nail_watch"
@@ -32,6 +35,10 @@
     </.link>
   </:action>
 </.table>
+
+<.link patch={~p"/nail_watch/new"}>
+  <.button>New Nail watch</.button>
+</.link>
 
 <.modal :if={@live_action in [:new, :edit]} id="nail_watch-modal" show on_cancel={JS.patch(~p"/nail_watch")}>
   <.live_component

@@ -724,4 +724,55 @@ defmodule BytebinderWeb.CoreComponents do
       """
     end
   end
+
+  attr :current_user, :any, default: nil
+  def account_menu(assigns) do
+    if assigns.current_user do
+      ~H"""
+      <ul class="menu list-none flex">
+        <li><a href="#">Account</a>
+        <ul>
+          <li class="text-[0.8125rem] leading-6">
+            <%= @current_user.email %>
+          </li>
+          <li>
+            <.link href="/users/settings"
+              class="text-[0.8125rem] leading-6 font-semibold hover:text-zinc-700">
+              Settings
+            </.link>
+          </li>
+          <li>
+            <.link href="/users/log_out" method="delete"
+              class="text-[0.8125rem] leading-6 font-semibold hover:text-zinc-700">
+              Log out
+            </.link>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    """
+    else
+      ~H"""
+      <ul class="menu list-none flex">
+        <li><a href="#">Account</a>
+        <ul>
+          <li>
+            <.link href="/users/register"
+              class="text-[0.8125rem] leading-6 font-semibold hover:text-zinc-700">
+              Register
+            </.link>
+          </li>
+          <li>
+            <.link href="/users/log_in"
+              class="text-[0.8125rem] leading-6 font-semibold hover:text-zinc-700">
+              Log in
+            </.link>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  """
+    end
+
+  end
 end
